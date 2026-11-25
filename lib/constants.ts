@@ -36,7 +36,7 @@ export const COMPANIES: Company[] = [
     url: "https://earthlinkventures.com",
     description:
       "Earthlink Ventures supports organizations looking to expand and pursue sustainable growth. It focuses on identifying strategic opportunities, connecting businesses with people and markets, and turning growth ambitions into practical next steps.",
-    logoImage: "/logo-Ventures.png",
+    logoImage: "/logo-ventures.png",
     logoBackground: "transparent",
   },
 ];
