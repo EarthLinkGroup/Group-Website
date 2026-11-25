@@ -1,0 +1,83 @@
+name: Deploy Earthlink Group website
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: earthlinkgroup-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Validate deployment script
+        run: bash -n scripts/deploy-vps.sh
+
+      - name: Install dependencies and build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Package standalone application
+        run: |
+          mkdir -p .deploy-artifact
+          cp -a .next/standalone/. .deploy-artifact/
+          mkdir -p .deploy-artifact/.next
+          cp -a .next/static .deploy-artifact/.next/
+          cp -a public .deploy-artifact/public
+          tar -czf earthlinkgroup.tar.gz -C .deploy-artifact .
+
+      - name: Prepare SSH
+        env:
+          VPS_SSH_PRIVATE_KEY: ${{ secrets.VPS_SSH_PRIVATE_KEY }}
+          VPS_KNOWN_HOSTS: ${{ secrets.VPS_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d "$HOME/.ssh"
+          printf '%s\n' "$VPS_SSH_PRIVATE_KEY" > "$HOME/.ssh/id_ed25519"
+          printf '%s\n' "$VPS_KNOWN_HOSTS" > "$HOME/.ssh/known_hosts"
+          chmod 600 "$HOME/.ssh/id_ed25519" "$HOME/.ssh/known_hosts"
+
+      - name: Deploy release
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          ssh -i "$HOME/.ssh/id_ed25519" \
+            -o IdentitiesOnly=yes \
+            -o StrictHostKeyChecking=yes \
+            "$VPS_USER@$VPS_HOST" \
+            "mkdir -p /home/earthlink-deploy/incoming /home/earthlink-deploy/bin"
+
+          scp -i "$HOME/.ssh/id_ed25519" \
+            -o IdentitiesOnly=yes \
+            -o StrictHostKeyChecking=yes \
+            earthlinkgroup.tar.gz \
+            "$VPS_USER@$VPS_HOST:/home/earthlink-deploy/incoming/earthlinkgroup-${GITHUB_SHA}.tar.gz"
+
+          scp -i "$HOME/.ssh/id_ed25519" \
+            -o IdentitiesOnly=yes \
+            -o StrictHostKeyChecking=yes \
+            scripts/deploy-vps.sh \
+            "$VPS_USER@$VPS_HOST:/home/earthlink-deploy/bin/deploy-vps.sh.tmp"
+
+          ssh -i "$HOME/.ssh/id_ed25519" \
+            -o IdentitiesOnly=yes \
+            -o StrictHostKeyChecking=yes \
+            "$VPS_USER@$VPS_HOST" \
+            "chmod 750 /home/earthlink-deploy/bin/deploy-vps.sh.tmp && mv /home/earthlink-deploy/bin/deploy-vps.sh.tmp /home/earthlink-deploy/bin/deploy-vps.sh && /home/earthlink-deploy/bin/deploy-vps.sh ${GITHUB_SHA}"

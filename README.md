@@ -105,3 +105,18 @@ npm run start
 ```
 
 The site can be deployed to a platform that supports Next.js. Configure the deployment's build and start commands to match the scripts above.
+
+## VPS Deployment
+
+Pushing to `main` runs the GitHub Actions workflow in `.github/workflows/deploy.yml`. It builds a standalone Next.js release, transfers it over pinned SSH, and restarts the dedicated `earthlinkgroup-next` service. Releases are kept separately so a failed health check restores the previous release.
+
+The workflow requires these GitHub Actions repository secrets:
+
+| Secret | Purpose |
+| --- | --- |
+| `VPS_HOST` | VPS hostname or IP address. |
+| `VPS_USER` | Restricted deployment account on the VPS. |
+| `VPS_SSH_PRIVATE_KEY` | Private key for that deployment account. |
+| `VPS_KNOWN_HOSTS` | Pinned SSH host key for the VPS. |
+
+Nginx remains the public reverse proxy. Its existing `/api/` and `/media/` routes must be preserved when configuring the site host.
