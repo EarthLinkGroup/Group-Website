@@ -55,11 +55,13 @@ No environment variables are currently required. In the VS Code integrated termi
 | Route | Purpose |
 | --- | --- |
 | `/` | Earthlink Group homepage. |
+| `/contact` | Contact form for sending an enquiry by email. |
 | `/brands/earthlink-study` | Earthlink Study overview and website link. |
 | `/brands/asosales` | ASOSales overview and website link. |
 | `/brands/earthlink-ventures` | Earthlink Ventures overview and website link. |
 
 Brand detail routes are generated from the company entries in `lib/constants.ts`.
+The contact form opens the visitor's email application with the form details prefilled; it does not send messages to a server.
 
 ## Project Structure
 

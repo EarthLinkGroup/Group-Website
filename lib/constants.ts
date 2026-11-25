@@ -42,9 +42,9 @@ export const COMPANIES: Company[] = [
 ];
 
 export const NAV_LINKS = [
-  { label: "Home", href: "#home" },
-  { label: "About Us", href: "#about" },
-  { label: "Our Brands", href: "#brands" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/#home" },
+  { label: "About Us", href: "/#about" },
+  { label: "Our Brands", href: "/#brands" },
+  { label: "Contact", href: "/contact" },
 ];
 

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { NAV_LINKS } from "@/lib/constants";
 
@@ -20,38 +21,38 @@ export default function Navbar() {
 
       >
         
-        <a
-          href="#home"
+        <Link
+          href="/#home"
           className="brand-lockup inline-flex items-center gap-3"
           aria-label="Earthlink Group home"
           onClick={closeMenu}
         >
-          <span className="brand-logo-crop" aria-hidden="true">
-            <Image
-              src="/logo.png"
-              alt=""
-              width={706}
-              height={500}
-            />
-          </span>
-        </a>
+          <Image
+            className="site-logo"
+            src="/logo.png"
+            alt=""
+            width={2048}
+            height={768}
+            sizes="(max-width: 767px) 112px, 150px"
+          />
+        </Link>
 
         <div className="hidden items-center gap-8 lg:flex">
           <div className="flex items-center gap-8">
             {NAV_LINKS.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="nav-link text-base text-slate-600 transition hover:text-navy"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
-          <a className="button button-primary" href="#contact">
+          <Link className="button button-primary" href="/contact">
             Partner with us
             <ArrowUpRight size={16} aria-hidden="true" />
-          </a>
+          </Link>
         </div>
 
         <button
@@ -72,23 +73,23 @@ export default function Navbar() {
       >
         <div className="page-container flex flex-col gap-1 pb-5">
           {NAV_LINKS.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="rounded-md px-3 py-3 text-base text-slate-600 transition hover:bg-slate-50 hover:text-navy"
               onClick={closeMenu}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
-          <a
+          <Link
             className="button button-primary mt-3 self-start"
-            href="#contact"
+            href="/contact"
             onClick={closeMenu}
           >
             Partner with us
             <ArrowUpRight size={16} aria-hidden="true" />
-          </a>
+          </Link>
         </div>
       </div>
     </header>

@@ -1,16 +1,14 @@
 import {
   ArrowRight,
   ArrowUpRight,
-  Globe2,
   Lightbulb,
-  Mail,
   Network,
   Sprout,
 } from "lucide-react";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { COMPANIES, CONTACT_EMAIL } from "@/lib/constants";
+import { COMPANIES } from "@/lib/constants";
 
 const values = [
   {
@@ -59,7 +57,7 @@ export default function Home() {
         <section id="home" className="hero-section">
           <div className="hero-image">
             <Image
-              src="/education-campus.jpg"
+              src="/hero-architecture.jpg"
               alt=""
               fill
               priority
@@ -203,35 +201,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="contact" className="contact-section">
-          <div className="page-container contact-content">
-            <h2>Let&apos;s Connect</h2>
-            <p>
-              Whether you are looking for opportunities, exploring partnerships
-              or interested in working with one of our brands, we would love to
-              hear from you.
-            </p>
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="button button-primary"
-            >
-              <Mail size={17} aria-hidden="true" />
-              Get in touch
-              <ArrowUpRight size={16} aria-hidden="true" />
-            </a>
-            <div className="contact-details">
-              <a href={`mailto:${CONTACT_EMAIL}`}>
-                <Mail size={16} aria-hidden="true" />
-                {CONTACT_EMAIL}
-              </a>
-              <a href="https://earthlinkgroup.com">
-                <Globe2 size={16} aria-hidden="true" />
-                earthlinkgroup.com
-                <ArrowUpRight size={13} aria-hidden="true" />
-              </a>
-            </div>
-          </div>
-        </section>
       </main>
       <Footer />
     </>

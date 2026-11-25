@@ -186,33 +186,11 @@ select {
   transform: rotate(-60deg);
 }
 
-.brand-logo-crop {
-  position: relative;
+.site-logo {
   display: block;
-  width: 130px;
-  height: 92px;
-  flex: 0 0 auto;
-  overflow: hidden;
-  background: #fff;
-}
-
-.brand-logo-crop img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 130px;
-  max-width: none;
+  width: 150px;
   height: auto;
-}
-
-.brand-logo-footer {
-  width: 150px;
-  height: 107px;
-  background: transparent;
-}
-
-.brand-logo-footer img {
-  width: 150px;
+  flex: 0 0 auto;
 }
 
 .site-header {
@@ -225,18 +203,85 @@ select {
 }
 
 .site-footer {
-  margin: 0 22px 22px;
-  border: 1px solid #e6ebe7;
-  border-radius: 24px;
-  padding: 8px;
-  background: #fff;
+  margin: 0 36px 30px;
+  border-radius: 36px;
+  background: #191a1d;
+  color: #fff;
 }
 
 .footer-panel {
-  overflow: hidden;
-  border-radius: 17px;
+  display: flex;
+  min-height: 378px;
+  flex-direction: column;
+  align-items: center;
+  padding: 72px 36px 36px;
+}
+
+.footer-title {
+  color: #fff;
+  font-size: clamp(2.5rem, 3.8vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.footer-description {
+  max-width: 920px;
+  margin-top: 35px;
+  color: rgb(255 255 255 / 94%);
+  font-size: clamp(1rem, 1.4vw, 1.4rem);
+  line-height: 1.5;
+  text-align: center;
+}
+
+.footer-email-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgb(255 255 255 / 58%);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 180ms ease;
+}
+
+.footer-email-link:hover {
+  text-decoration-color: #fff;
+}
+
+.footer-email-link:focus-visible,
+.footer-social-link:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+.footer-bottom {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: auto;
+  padding-top: 52px;
+}
+
+.footer-bottom p {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.footer-social-link {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
   background: #fff;
-  color: var(--navy);
+  color: #191a1d;
+  transition: transform 180ms ease;
+}
+
+.footer-social-link:hover {
+  transform: translateY(-2px);
 }
 
 .site-header .nav-link {
@@ -552,6 +597,7 @@ select {
   gap: 7px;
   color: var(--ink);
   font-size: 1rem;
+  text-decoration: underline;
   text-underline-offset: 4px;
   transition:
     color 180ms ease,
@@ -653,12 +699,115 @@ select {
   margin-top: 28px;
 }
 
+.contact-page {
+  background: #fff;
+}
+
+.contact-page-content {
+  display: flex;
+  min-height: calc(100svh - 112px);
+  align-items: center;
+  padding-block: clamp(72px, 10vw, 128px);
+}
+
+.contact-page-copy {
+  max-width: 700px;
+}
+
+.contact-page-copy h1 {
+  color: var(--ink);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.contact-page-copy p {
+  max-width: 620px;
+  margin-top: 22px;
+  color: var(--muted);
+  font-size: 1.125rem;
+  line-height: 1.8;
+}
+
+.contact-form {
+  display: grid;
+  gap: 20px;
+  margin-top: 32px;
+}
+
+.contact-form-field {
+  display: grid;
+  gap: 8px;
+}
+
+.contact-form-label {
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.contact-form-field input,
+.contact-form-field textarea {
+  width: 100%;
+  border: 1px solid #d8e0db;
+  border-radius: 3px;
+  padding: 12px 14px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 1rem;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.contact-form-field textarea {
+  min-height: 145px;
+  resize: vertical;
+}
+
+.contact-form-field input:focus-visible,
+.contact-form-field textarea:focus-visible {
+  border-color: var(--green);
+  outline: 2px solid rgb(37 132 95 / 18%);
+  outline-offset: 1px;
+}
+
+.contact-form .button {
+  width: fit-content;
+  cursor: pointer;
+}
+
+.contact-form-status {
+  min-height: 1.4em;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.contact-page-email {
+  margin-top: 20px;
+  color: #53615c;
+  font-size: 1rem;
+}
+
+.contact-page-email a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: color 180ms ease;
+}
+
+.contact-page-email a:hover {
+  color: var(--green);
+}
+
 .advantages-section {
   background: #fff;
 }
 
 .advantages-heading {
   max-width: 700px;
+  margin-inline: auto;
+  text-align: center;
 }
 
 .advantages-grid {
@@ -696,55 +845,6 @@ select {
   color: var(--muted);
   font-size: 1.125rem;
   line-height: 1.75;
-}
-
-.contact-section {
-  background: #fff;
-  color: var(--ink);
-}
-
-.contact-content {
-  padding-block: clamp(72px, 8vw, 110px);
-}
-
-.contact-content h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-}
-
-.contact-content > p:not(.eyebrow) {
-  max-width: 625px;
-  margin-top: 18px;
-  color: var(--muted);
-  font-size: 1.125rem;
-  line-height: 1.8;
-}
-
-.contact-content > .button {
-  margin-top: 26px;
-}
-
-.contact-details {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  margin-top: 40px;
-  border-top: 1px solid #e1e7e2;
-  padding-top: 20px;
-}
-
-.contact-details a {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  color: #53615c;
-  font-size: 0.85rem;
-  transition: color 180ms ease;
-}
-
-.contact-details a:hover {
-  color: var(--green);
 }
 
 .mobile-navigation {
@@ -812,19 +912,8 @@ select {
     height: 88px;
   }
 
-  .site-footer {
-    margin: 0 10px 10px;
-    border-radius: 17px;
-    padding: 5px;
-  }
-
-  .site-header .brand-logo-crop {
-    width: 100px;
-    height: 71px;
-  }
-
-  .site-header .brand-logo-crop img {
-    width: 100px;
+  .site-header .site-logo {
+    width: 112px;
   }
 
   .hero-section {
@@ -908,8 +997,7 @@ select {
     font-size: 1.75rem;
   }
 
-  .section-heading,
-  .contact-content h2 {
+  .section-heading {
     font-size: 1.75rem;
   }
 
@@ -922,6 +1010,10 @@ select {
   }
 
   .brand-detail-page {
+    min-height: calc(100svh - 88px);
+  }
+
+  .contact-page-content {
     min-height: calc(100svh - 88px);
   }
 
@@ -968,26 +1060,41 @@ select {
     padding-left: 0;
   }
 
-  .contact-section {
-    min-height: 560px;
+  .site-footer {
+    margin: 0 10px 10px;
+    border-radius: 22px;
   }
 
-  .contact-content {
-    padding-block: 72px;
+  .footer-panel {
+    min-height: 320px;
+    padding: 48px 24px 24px;
   }
 
-  .contact-details {
-    flex-direction: column;
-    gap: 13px;
+  .footer-title {
+    font-size: 2rem;
   }
 
-  .brand-logo-footer {
-    width: 130px;
-    height: 92px;
+  .contact-page-copy h1 {
+    font-size: 2rem;
   }
 
-  .brand-logo-footer img {
-    width: 130px;
+  .footer-description {
+    margin-top: 22px;
+    font-size: 1rem;
+  }
+
+  .footer-bottom {
+    gap: 12px;
+    padding-top: 42px;
+  }
+
+  .footer-bottom p {
+    font-size: 0.75rem;
+  }
+
+  .footer-social-link {
+    width: 44px;
+    height: 44px;
   }
 }
 
