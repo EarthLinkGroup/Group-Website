@@ -26,6 +26,9 @@ export const metadata: Metadata = {
   title: "Earthlink Group | Connecting Opportunities. Building Growth.",
   description:
     "A diversified business group bringing together education, sales development and business expansion to create opportunities and drive sustainable growth.",
+  icons: {
+    icon: "/favicon.png",
+  },
   openGraph: {
     title: "Earthlink Group | Connecting Opportunities. Building Growth.",
     description:
